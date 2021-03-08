@@ -6,15 +6,15 @@ const Cart = (props) => {
     // const total = cart.reduce((total, prd) => total + prd.price, 0)
     let total = 0;
     for (let i = 0; i < cart.length; i++) {
-        const product = cart[i];    
-        total = total + product.price; 
+        const product = cart[i];
+        total = total + product.price * product.quantity;
     }
     let shipping = 0;
-    if(total>100){
+    if (total > 100) {
         shipping = 0;
-    }else if(total>50){
+    } else if (total > 50) {
         shipping = 4.99;
-    }else if(total>0){
+    } else if (total > 0) {
         shipping = 12.50;
     }
 
@@ -34,6 +34,10 @@ const Cart = (props) => {
             <p>Shipping Cost: {shipping}</p>
             <p><small>Tax + VAT:</small> {tax}</p>
             <p>Total Price: {grandTotal}</p>
+            <br/>
+            {
+                props.children
+            }
         </div>
     );
 };
